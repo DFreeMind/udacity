@@ -1,7 +1,7 @@
 
 # coding: utf-8
 
-# In[23]:
+# In[3]:
 
 
 # 任意选一个你喜欢的整数，这能帮你得到稳定的结果
@@ -42,15 +42,15 @@ C = [[1],
      [3]]
 
 #TODO 创建一个 4*4 单位矩阵
-I = [[1, 2, 3, 4],
-     [5, 6, 7, 8],
-     [9, 10, 11, 12],
-     [13, 14, 15, 16]]
+I = [[1, 0, 0, 0],
+     [0, 1, 0, 0],
+     [0, 0, 1, 0],
+     [0, 0, 0, 1]]
 
 
 # ## 1.2 返回矩阵的行数和列数
 
-# In[1]:
+# In[37]:
 
 
 # TODO 返回矩阵的行数和列数
@@ -175,10 +175,10 @@ def augmentMatrix(A, b):
     a_rows,a_cols = shape(A)
     res = []
     for a_row in range(a_rows):
-      res.append([])
-      for a_col in range(a_cols):
-        res[a_row].append(A[a_row][a_col])
-      res[a_row].append(b[a_row][0])
+        res.append([])
+        for a_col in range(a_cols):
+            res[a_row].append(A[a_row][a_col])
+        res[a_row].append(b[a_row][0])
     return res
 
 
@@ -194,7 +194,7 @@ get_ipython().run_line_magic('run', '-i -e test.py LinearRegressionTestCase.test
 # - 把某行乘以一个非零常数
 # - 把某行加上另一行的若干倍：
 
-# In[11]:
+# In[42]:
 
 
 # TODO r1 <---> r2
@@ -207,7 +207,7 @@ def swapRows(M, r1, r2):
         M[r1][col] = temp
 
 
-# In[12]:
+# In[43]:
 
 
 # 运行以下代码测试你的 swapRows 函数
@@ -236,21 +236,18 @@ def scaleRow(M, r, scale):
 get_ipython().run_line_magic('run', '-i -e test.py LinearRegressionTestCase.test_scaleRow')
 
 
-# In[15]:
+# In[44]:
 
 
 # TODO r1 <--- r1 + r2*scale
 # 直接修改参数矩阵，无返回值
 def addScaledRow(M, r1, r2, scale):
-    if scale != 0:
-        rows,cols = shape(M)
-        for col in range(cols):
-            M[r1][col] =  M[r1][col] + M[r2][col] * scale
-    else:
-        raise ValueError
+    rows,cols = shape(M)
+    for col in range(cols):
+        M[r1][col] =  M[r1][col] + M[r2][col] * scale
 
 
-# In[16]:
+# In[45]:
 
 
 # 运行以下代码测试你的 addScaledRow 函数
@@ -510,7 +507,7 @@ get_ipython().run_line_magic('run', '-i -e test.py LinearRegressionTestCase.test
 
 # ## 3.1 随机生成样本点
 
-# In[84]:
+# In[4]:
 
 
 # 不要修改这里！
@@ -533,12 +530,12 @@ plt.show()
 # 
 # ### 3.2.1 猜测一条直线
 
-# In[83]:
+# In[34]:
 
 
 #TODO 请选择最适合的直线 y = mx + b
-m1 = 0
-b1 = 0
+m1 = 3.5
+b1 = 6.8
 
 # 不要修改这里！
 plt.xlim((-5,5))
@@ -560,17 +557,17 @@ plt.show()
 # MSE = \frac{1}{n}\sum_{i=1}^{n}{(y_i - mx_i - b)^2}
 # $$
 
-# In[85]:
+# In[46]:
 
 
 # TODO 实现以下函数并输出所选直线的MSE
 
 def calculateMSE(X,Y,m,b):
     n = len(X)
-    sum = 0
+    total = 0
     for i in range(n):
-        sum += (Y[i] - m*X[i] - b)^2
-    return sum*1.0/n
+        total += (Y[i] - m*X[i] - b)**2
+    return total*1.0/n
 
 print(calculateMSE(X,Y,m1,b1))
 
