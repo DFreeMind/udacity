@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 import random
 import math
 from environment import Agent, Environment
@@ -55,8 +56,9 @@ class LearningAgent(Agent):
         ########### 
         ## TO DO ##
         ###########
-        # Set 'state' as a tuple of relevant data for the agent        
-        state = None
+        # Set 'state' as a tuple of relevant data for the agent
+        # （应该行驶的方向、红绿灯、左侧车的目的地方向、）        
+        state = (waypoint, inputs['light'], inputs['left'], inputs['oncoming'])
 
         return state
 
@@ -96,14 +98,19 @@ class LearningAgent(Agent):
         self.state = state
         self.next_waypoint = self.planner.next_waypoint()
         action = None
-
+ 			
         ########### 
         ## TO DO ##
         ###########
         # When not learning, choose a random action
         # When learning, choose a random action with 'epsilon' probability
         #   Otherwise, choose an action with the highest Q-value for the current state
- 
+        if self.learning:
+            pass
+        else:
+            # 随机从四个选项中选择一个
+            action = self.valid_actions[random.randint(0,3)]
+
         return action
 
 
