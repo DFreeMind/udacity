@@ -9,7 +9,7 @@ class LearningAgent(Agent):
     """ An agent that learns to drive in the Smartcab world.
         This is the object you will be modifying. """ 
 
-    def __init__(self, env, learning=True, epsilon=1.0, alpha=0.008):
+    def __init__(self, env, learning=True, epsilon=1.0, alpha=0.5):
         super(LearningAgent, self).__init__(env)     # Set the agent in the evironment 
         self.planner = RoutePlanner(self.env, self)  # Create a route planner
         self.valid_actions = self.env.valid_actions  # The set of valid actions
@@ -26,6 +26,7 @@ class LearningAgent(Agent):
         # Set any additional class parameters as needed
         # 实验的次数
         self.t = 0.0
+
 
     def reset(self, destination=None, testing=False):
         """ The reset function is called at the beginning of each trial.
@@ -53,7 +54,8 @@ class LearningAgent(Agent):
             # 衰减的过快
             # self.epsilon = 1.0/self.t**2
 
-            self.epsilon = math.cos(self.alpha * self.t)
+            self.epsilon = math.cos( 0.000520265 * self.t)
+            
         return None
 
     def build_state(self):
@@ -70,8 +72,8 @@ class LearningAgent(Agent):
         ## TO DO ##
         ###########
         # Set 'state' as a tuple of relevant data for the agent
-        # （应该行驶的方向、红绿灯、左侧车的目的地方向、交叉方向车辆及其目的地）        
-        state = (waypoint, inputs['light'], inputs['left'], inputs['oncoming'])
+        # （应该行驶的方向、红绿灯、左侧车的目的地方向、交叉方向车辆及其目的地，右侧车辆的目的地）        
+        state = (waypoint, inputs['light'], inputs['left'], inputs['oncoming'], inputs['right'])
 
         return state
 
