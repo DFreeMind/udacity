@@ -3,6 +3,20 @@
 .DS_Store
 .ipynb_checkpoints/*
 
-.DS_Store
 ml-advance/.DS_Store
 .DS_Store
+
+ml-advance/capstone/*.zip
+ml-advance/capstone/*.gz
+ml-advance/capstone/test*
+ml-advance/capstone/train*
+ml-advance/capstone/data
+ml-advance/capstone/*.csv
+ml-advance/capstone/*.h5
+
+ml-advance/image-classification/cifar-10-batches-py
+ml-advance/image-classification/*.p
+ml-advance/image-classification/*.gz
+ml-advance/image-classification/*.index
+ml-advance/image-classification/*.meta
+ml-advance/image-classification/__pycache__
